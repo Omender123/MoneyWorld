@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.money.moneyworld.MainActivity;
 import com.money.moneyworld.R;
 import com.money.moneyworld.databinding.ActivitySignInBinding;
 
@@ -27,7 +28,7 @@ ActivitySignInBinding binding;
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.card_Login:
-                Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 break;
             case R.id.text_Sign:
                 Intent intent = new Intent(getApplicationContext(),SignUp.class);

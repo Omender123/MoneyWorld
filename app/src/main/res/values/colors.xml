@@ -2,7 +2,7 @@
 <resources>
     <color name="purple_200">#FF03DAC5</color> <!--progress bar color-->
     <color name="purple_500">#ffc51a</color><!-- tool bar color-->
-    <color name="purple_700">#1F2641</color> <!--status bar color-->
+    <color name="purple_700">#1A2C5A</color> <!--status bar color-->
     <color name="teal_200">#F5FFC10C</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -14,6 +14,7 @@
     <color name="neomorph_highlight_color_red">#FC6A1D</color>
 
     <color name="status_color">#313e60</color>
-    <color name="button_color"> #D9163D</color>
+    <color name="button_color">#008dcb</color>
     <color name="shadowBlack">#000</color>
+    <color name="toolbar_color">#3a4572</color>
 </resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"/>
+        <item
+            android:id="@+id/nav_wallet"
+            android:icon="@drawable/ic_wallet"
+            android:title="Wallet"/>
+        <item
+            android:id="@+id/nav_Result"
+            android:icon="@drawable/ic_result"
+            android:title="Result"/>
+    </group>
+    <item
+        android:id="@+id/nav_com"
+        android:title="Communication"
+
+        >
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="Contact Us"
+                    android:id="@+id/nav_contact"
+                    android:icon="@drawable/ic_phone"
+                    />
+
+                <item
+                    android:checkable="false"
+                    android:checked="false"
+                    android:id="@+id/nav_Share_us"
+                    android:icon="@drawable/ic_baseline_share_24"
+                    android:title="Share Us"/>
+                <item
+                    android:id="@+id/nav_Feedback"
+                    android:icon="@drawable/ic_baseline_feedback_24"
+                    android:title="Feedback"/>
+                <item
+                    android:checkable="false"
+                    android:checked="false"
+                    android:id="@+id/nav_Logout"
+                    android:icon="@drawable/ic_baseline_exit_to_app_24"
+                    android:title="Logout"/>
+
+
+            </group>
+        </menu>
+    </item>
+</menu>

@@ -32,7 +32,8 @@
         <activity
             android:name=".authentication.SignUp"
             android:theme="@style/Theme.MoneyWorld.NoActionBar" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar"/>
 
         <meta-data
             android:name="preloaded_fonts"
