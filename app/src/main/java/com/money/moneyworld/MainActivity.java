@@ -7,6 +7,9 @@ import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -32,6 +35,8 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
+import com.money.moneyworld.Fragment.Contact_Us;
+import com.money.moneyworld.Fragment.Home;
 import com.money.moneyworld.utils.AppUtils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -75,20 +80,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         navigationView.setNavigationItemSelectedListener(this);
-
-        if (savedInstanceState == null) {
-           /* getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_Container,new Home_Fragment())
-                    .commit();*/
+        if (null == savedInstanceState) {
+            getSupportFragmentManager().beginTransaction()
+                    .addToBackStack("Home")
+                    .replace(R.id.fragment_Container, new Home(), "Home")
+                    .commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
     }
 
     @Override
     public void onBackPressed() {
+        int fragmentsInStack = getSupportFragmentManager().getBackStackEntryCount();
+
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
             navigationView.setCheckedItem(R.id.nav_home);
+        }else if (fragmentsInStack > 1) { // If we have more than one fragment, pop back stack
+            getSupportFragmentManager().popBackStack();
+          navigationView.setCheckedItem(R.id.nav_home);
+        } else if (fragmentsInStack == 1) { // Finish activity, if only one fragment left, to prevent leaving empty screen
+            finish();
         } else {
             super.onBackPressed();
         }
@@ -106,10 +119,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-             /*   getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new Home_Fragment())
-                        .commit();
-            */
+                Fragment fragment = new Home();
+                replaceFragment(fragment,"Home");
                 Toast.makeText(this, "Welcome to home fragment", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -123,6 +134,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
             case R.id.nav_contact:
+                Fragment fragment1 = new Contact_Us();
+                replaceFragment(fragment1,"Contact_us");
                 Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -234,5 +247,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (ActivityNotFoundException exception) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
         }
+    }
+
+    public void replaceFragment(Fragment fragment, String tag) {
+        //Get current fragment placed in container
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_Container);
+
+        //Prevent adding same fragment on top
+        if (currentFragment.getClass() == fragment.getClass()) {
+            return;
+        }
+
+        //If fragment is already on stack, we can pop back stack to prevent stack infinite growth
+        if (getSupportFragmentManager().findFragmentByTag(tag) != null) {
+            getSupportFragmentManager().popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+
+        //Otherwise, just replace fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(tag)
+                .replace(R.id.fragment_Container, fragment, tag)
+                .commit();
     }
  }

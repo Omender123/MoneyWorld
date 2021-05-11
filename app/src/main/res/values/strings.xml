@@ -9,4 +9,6 @@
     <string name="rate_btn_pos">Rate Now</string>
     <string name="rate_btn_neg">Remind me later</string>
     <string name="rate_btn_nut">No, Thanks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
