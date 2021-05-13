@@ -39,7 +39,7 @@ import com.money.moneyworld.Fragment.Contact_Us;
 import com.money.moneyworld.Fragment.Home;
 import com.money.moneyworld.utils.AppUtils;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout mDrawerLayout;
     private View navHeader;
     TextView name, email, mobile;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Context context;
     NavigationView navigationView;
     ReviewManager reviewManager;
-
+    ActionBarDrawerToggle  toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         changeStatusBarColor();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Home");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
 
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         context = MainActivity.this;
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+         toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
@@ -88,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-    }
+
+       }
 
     @Override
     public void onBackPressed() {
@@ -99,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }else if (fragmentsInStack > 1) { // If we have more than one fragment, pop back stack
             getSupportFragmentManager().popBackStack();
-          navigationView.setCheckedItem(R.id.nav_home);
-        } else if (fragmentsInStack == 1) { // Finish activity, if only one fragment left, to prevent leaving empty screen
+            toolbar.setTitle("Home");
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            navigationView.setCheckedItem(R.id.nav_home);
+                 } else if (fragmentsInStack == 1) { // Finish activity, if only one fragment left, to prevent leaving empty screen
             finish();
         } else {
             super.onBackPressed();
@@ -121,21 +127,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 Fragment fragment = new Home();
                 replaceFragment(fragment,"Home");
+                toolbar.setTitle("Home");
+                toolbar.setTitleTextColor(getResources().getColor(R.color.white));
                 Toast.makeText(this, "Welcome to home fragment", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_wallet:
+                toolbar.setTitle("Wallet");
+                toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
                 Toast.makeText(this, "Welcome to Wallet", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Result:
+                toolbar.setTitle("Result");
+                toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
                 Toast.makeText(this, "Welcome to Result", Toast.LENGTH_SHORT).show();
                 break;
 
 
             case R.id.nav_contact:
+
                 Fragment fragment1 = new Contact_Us();
                 replaceFragment(fragment1,"Contact_us");
+                toolbar.setTitle("Contact Us");
+                toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
                 Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -270,4 +288,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.fragment_Container, fragment, tag)
                 .commit();
     }
- }
+
+
+
+}
