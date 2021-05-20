@@ -39,6 +39,7 @@ public class Contact_Us extends Fragment implements View.OnClickListener {
         binding.cardEmail.setOnClickListener(this);
         binding.cardPhoneNo.setOnClickListener(this);
         binding.cardWebSite.setOnClickListener(this);
+        binding.cardHelpLineNo.setOnClickListener(this);
     return binding.getRoot();}
 
 
@@ -48,7 +49,7 @@ public class Contact_Us extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.card_email:
                Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto","imxchange.imx@gmail.com", "Contact_us"));
+                        "mailto","moneyworld013@gmail.com", "Contact_us"));
                 try {
                     startActivity(Intent.createChooser(intent1, "Choose an Email client :"));
                     Log.i("Finished sending email...", "");
@@ -66,12 +67,19 @@ public class Contact_Us extends Fragment implements View.OnClickListener {
 
             case R.id.card_phone_no_:
                 Intent intent=new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:+66646981930"));
+                intent.setData(Uri.parse("tel:+919521835167"));
                 startActivity(intent);
                 break;
 
+            case R.id.card_HelpLine_no:
+                Intent inten1=new Intent(Intent.ACTION_DIAL);
+                inten1.setData(Uri.parse("tel:+919899764372"));
+                startActivity(inten1);
+                break;
+
+
             case R.id.card_webSite:
-                String url = "https://www.imx.global";
+                String url = "https://www.google.com";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);

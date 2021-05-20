@@ -1,18 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".Fragment.Home">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/status_color"
+        android:orientation="vertical"
+        tools:context=".Fragment.Home">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_batting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:textSize="20sp"
-        android:text="@string/hello_blank_fragment" />
+        app:cardBackgroundColor="@color/toolbar_color"
+        android:layout_below="@id/card_phone_no."
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="5dp"
 
-</LinearLayout>
+        android:elevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="5dp">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="5dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/button_color" />
+
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/backup"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="17dp"
+                android:textStyle="bold"
+                android:text="Play 1-10 Game"
+                android:fontFamily="@font/montserrat"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+            <ImageView
+                android:id="@+id/backup"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignLeft="@id/view"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="17dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_betting1" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_batting1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/toolbar_color"
+            android:layout_below="@id/card_phone_no."
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="5dp"
+
+            android:elevation="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="5dp">
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="5dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/button_color" />
+
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/backup1"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="17dp"
+                    android:textStyle="bold"
+                    android:text="Play 01-100 Game"
+                    android:fontFamily="@font/montserrat"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+                <ImageView
+                    android:id="@+id/backup1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignLeft="@id/view1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="17dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_betting2" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</layout>
