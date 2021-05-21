@@ -9,8 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWorld">
-        <activity android:name=".authentication.Change_Password"
-            android:theme="@style/Theme.MoneyWorld.NoActionBar" ></activity>
+        <activity android:name=".UI.Activity.PlayingGame2"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar"></activity>
+        <activity
+            android:name=".UI.Activity.PlayingGame1"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
+        <activity
+            android:name=".authentication.Change_Password"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
         <activity
             android:name=".authentication.ForgotPassword"
             android:theme="@style/Theme.MoneyWorld.NoActionBar" />
@@ -32,8 +38,9 @@
         <activity
             android:name=".authentication.SignUp"
             android:theme="@style/Theme.MoneyWorld.NoActionBar" />
-        <activity android:name=".MainActivity"
-            android:theme="@style/Theme.MoneyWorld.NoActionBar"/>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

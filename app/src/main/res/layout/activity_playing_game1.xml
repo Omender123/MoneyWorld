@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+ >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/status_color"
+        tools:context=".UI.Activity.PlayingGame1">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/toolbar_color"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/toolbar"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="10"
+            tools:listitem="@layout/custom_game_layout"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            android:layout_above="@id/bottom"/>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#39436E"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Amount ₹ 0.00 "
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textStyle="italic|normal"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:id="@+id/totalExpense"
+                android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/submitexpenses"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pay"
+                android:textStyle="normal"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+
+</layout>

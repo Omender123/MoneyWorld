@@ -95,7 +95,8 @@ public class AppUtils {
 
             Objects.requireNonNull(activity.getSupportActionBar()).setDisplayShowTitleEnabled(isTitleEnable);
             activity.getSupportActionBar().setTitle(title);
-             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(isBackEnable);
+
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(isBackEnable);
              activity.getSupportActionBar().setDisplayShowHomeEnabled(isBackEnable);
 
              toolbar.setNavigationOnClickListener(new View.OnClickListener() {
