@@ -37,6 +37,7 @@ import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 import com.money.moneyworld.Fragment.Contact_Us;
 import com.money.moneyworld.Fragment.Home;
+import com.money.moneyworld.Fragment.Wallet;
 import com.money.moneyworld.utils.AppUtils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -135,8 +136,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_wallet:
                 toolbar.setTitle("Wallet");
                 toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+                Fragment fragment1 = new Wallet();
+                replaceFragment(fragment1,"Wallet");
 
-                Toast.makeText(this, "Welcome to Wallet", Toast.LENGTH_SHORT).show();
+
                 break;
 
             case R.id.nav_Result:
@@ -149,12 +152,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_contact:
 
-                Fragment fragment1 = new Contact_Us();
-                replaceFragment(fragment1,"Contact_us");
+                Fragment fragment2 = new Contact_Us();
+                replaceFragment(fragment2,"Contact_us");
                 toolbar.setTitle("Contact Us");
                 toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
-                Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
                 break;
 
 

@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWorld">
-        <activity android:name=".UI.Activity.PlayingGame2"
+        <activity android:name=".UI.Activity.Add_Money"
             android:theme="@style/Theme.MoneyWorld.NoActionBar"></activity>
+        <activity
+            android:name=".UI.Activity.PlayingGame2"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
         <activity
             android:name=".UI.Activity.PlayingGame1"
             android:theme="@style/Theme.MoneyWorld.NoActionBar" />
@@ -45,6 +48,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="@string/rozerpay_api_key"
+            />
+
     </application>
 
 </manifest>

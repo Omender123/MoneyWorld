@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:background="@color/status_color"
+        tools:context=".Fragment.Wallet">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="50dp"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_wallet1"
+            />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Balance"
+            android:textColor="@color/cardview_light_background"
+            android:textStyle="normal"
+            android:textSize="25dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_below="@id/image"/>
+        <TextView
+            android:id="@+id/bal_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="₹ 0.00"
+            android:textColor="@color/cardview_light_background"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:layout_margin="@dimen/margin_10"
+            android:layout_below="@id/text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/bal_text"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+            <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+                android:id="@+id/toggle_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true">
+
+                <com.nex3z.togglebuttongroup.button.LabelToggle
+                    android:id="@+id/add"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Add Money"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    app:tbgMarkerColor="@color/button_color"
+                    app:tbgRadioStyle="true" />
+                <com.nex3z.togglebuttongroup.button.LabelToggle
+                    android:id="@+id/withdraw"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:text="WithDraw Money"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    app:tbgMarkerColor="@color/button_color"
+                    app:tbgRadioStyle="true" />
+
+            </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+        </LinearLayout>
+
+      </RelativeLayout>
+
+</layout>

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.money.moneyworld.Adapter.GameAdapter;
 import com.money.moneyworld.Model.GameModel;
@@ -32,9 +33,10 @@ GameAdapter gameAdapter;
 
         gameModels = new ArrayList<GameModel>();
 
-        for (int i= 1; i<=10;i++ ){
+        for (int i=01; i<=10;i++ ){
             GameModel gameModel = new GameModel();
             gameModel.setNumber(i);
+            gameModel.setAmount("₹ 0");
             gameModels.add(gameModel);
         }
         gameAdapter =new GameAdapter(getApplicationContext(),gameModels);
@@ -48,8 +50,7 @@ GameAdapter gameAdapter;
         activityPlayingGame1Binding.submitexpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+              
             }
         });
 

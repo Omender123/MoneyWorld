@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder>{
 Context context;
-ArrayList<GameModel>gameModels;
+ public  ArrayList<GameModel>gameModels;
     View rootView;
     boolean isOnTextChanged = false;
     int ExpenseFinalTotal = 0;
@@ -51,9 +51,8 @@ ArrayList<GameModel>gameModels;
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String no = String.valueOf(gameModels.get(position).getNumber());
         holder.number.setText(no);
-
+        holder.enterAmount.setText(gameModels.get(position).getAmount());
         EditText expHeld = holder.enterAmount;
-
 
         // EditText with TextWatcher Listens each time when user enter value in edittext in recyclerview
         expHeld.addTextChangedListener(new TextWatcher() {
@@ -82,7 +81,9 @@ ArrayList<GameModel>gameModels;
                             }else {
                                 // store user entered value to Array list (ExpAmtArray) at particular position
                                 ExpAmtArray.add("0");
+
                                 ExpAmtArray.set(inposition1,editable.toString());
+
                                 break;
                             }
                         }
@@ -145,7 +146,6 @@ ArrayList<GameModel>gameModels;
 
             number = itemView.findViewById(R.id.text_no);
             enterAmount = itemView.findViewById(R.id.ed_amount);
-
         }
     }
 }

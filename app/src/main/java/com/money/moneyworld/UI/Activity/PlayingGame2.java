@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.money.moneyworld.Adapter.GameAdapter;
 import com.money.moneyworld.Model.GameModel;
 import com.money.moneyworld.R;
+import com.money.moneyworld.SharedPerfence.MyPreferences;
 import com.money.moneyworld.databinding.ActivityPlayingGame2Binding;
 import com.money.moneyworld.utils.AppUtils;
 
@@ -35,7 +37,7 @@ GameAdapter gameAdapter;
 
         gameModels = new ArrayList<GameModel>();
 
-        for (int i= 1; i<=100;i++ ){
+        for (int i=01; i<=100;i++ ){
             GameModel gameModel = new GameModel();
             gameModel.setNumber(i);
             gameModels.add(gameModel);

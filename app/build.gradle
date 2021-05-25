@@ -1,7 +1,13 @@
 plugins {
     id 'com.android.application'
 }
+repositories {
+    mavenCentral()
 
+    flatDir {
+        dirs 'libs'
+    }
+}
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -44,7 +50,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.github.matecode:Snacky:1.1.5'
-
+    // Rozerpay gateway
+    implementation 'com.razorpay:checkout:1.5.16'
+    implementation 'com.nex3z:toggle-button-group:1.2.3'
     implementation 'com.google.android.play:core:1.9.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
