@@ -18,16 +18,18 @@ import com.money.moneyworld.SharedPerfence.MyPreferences;
 import com.money.moneyworld.SharedPerfence.PrefConf;
 import com.money.moneyworld.databinding.ActivityVerifyOtpBinding;
 import com.money.moneyworld.utils.AppUtils;
+import com.money.moneyworld.view_presenter.ForgetOtpVerifyPresenter;
 import com.money.moneyworld.view_presenter.OTP_VerifyPresenter;
 import com.money.moneyworld.view_presenter.SignUpPresenter;
 
 import de.mateware.snacky.Snacky;
 
-public class Verify_otp extends AppCompatActivity implements View.OnClickListener, OTP_VerifyPresenter.OTP_VerifyView {
+public class Verify_otp extends AppCompatActivity implements View.OnClickListener, OTP_VerifyPresenter.OTP_VerifyView, ForgetOtpVerifyPresenter.Forget_OTP_VerifyView {
 ActivityVerifyOtpBinding binding;
     private Context context;
     private Dialog dialog;
     private OTP_VerifyPresenter presenter;
+    private ForgetOtpVerifyPresenter presenter1;
     private View view;
 
     String type,otp,Number;
@@ -39,6 +41,7 @@ ActivityVerifyOtpBinding binding;
         view = binding.getRoot();
         context = Verify_otp.this;
         presenter = new OTP_VerifyPresenter(this);
+        presenter1 = new ForgetOtpVerifyPresenter(this);
         dialog = AppUtils.hideShowProgress(context);
 
         try {
@@ -75,12 +78,33 @@ ActivityVerifyOtpBinding binding;
                 if (type.equalsIgnoreCase("signup")){
                   otpVerify();
                 }else {
-                    startActivity(new Intent(getApplicationContext(),Change_Password.class));
+                  //  startActivity(new Intent(getApplicationContext(),Change_Password.class));
+
+                    ForgetotpVerify();
                 }
                 break;
 
         }
     }
+
+    private void ForgetotpVerify() {
+
+        String otp = binding.enterOtp.getText().toString().trim();
+
+        if (otp.isEmpty()){
+
+            binding.enterOtp.requestFocus();
+            Snacky.builder()
+                    .setActivity(Verify_otp.this)
+                    .setText("Please enter Otp")
+                    .setTextColor(getResources().getColor(R.color.white))
+                    .warning()
+                    .show();
+        }else{
+            presenter1.ForgetOTPVerify(Number,otp);
+        }
+    }
+
 
     private void otpVerify() {
 
@@ -129,6 +153,34 @@ ActivityVerifyOtpBinding binding;
 
     @Override
     public void onFailure(Throwable t) {
+        Snackbar.make(view,t.getLocalizedMessage(),Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showHideProgressForget(boolean isShow) {
+        if (isShow){
+            dialog.show();
+        }else {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onForgetError(String message) {
+        Snackbar.make(view,message,Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onForgetSuccess(String message) {
+        if (message.equalsIgnoreCase("ok")){
+            Intent intent = new Intent(this, Change_Password.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onForgetFailure(Throwable t) {
         Snackbar.make(view,t.getLocalizedMessage(),Snackbar.LENGTH_SHORT).show();
     }
 }
