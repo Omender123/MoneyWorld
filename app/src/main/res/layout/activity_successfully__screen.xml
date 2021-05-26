@@ -27,7 +27,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:id="@+id/text_create_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Account is created"
+
             android:textAlignment="center"
             android:textSize="30dp"
             android:layout_marginTop="20dp"

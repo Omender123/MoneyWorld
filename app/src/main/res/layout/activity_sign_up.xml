@@ -138,7 +138,7 @@
                     android:layout_marginTop="20dp"
                     android:hint="Confirm Password"
                     android:textColor="@color/white"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:drawableLeft="@drawable/ic_passcode"
                     android:drawablePadding="15dp"
                     android:paddingStart="10dp"

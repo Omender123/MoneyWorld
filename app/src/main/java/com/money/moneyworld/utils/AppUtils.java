@@ -39,6 +39,8 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 import com.money.moneyworld.R;
+import com.money.moneyworld.api.ApiManager;
+import com.money.moneyworld.api.ApiService;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -57,6 +59,12 @@ public class AppUtils {
     public static final int PERMISSION_REQUEST_CODE = 200;
     public static ReviewManager reviewManager;
     public static  ReviewInfo reviewInfo = null;
+
+
+    public static ApiService getApi(Context context) {
+        return ApiManager.getRetrofit(context).create(ApiService.class);
+    }
+
     public static AlertDialog showDialogMessage(Context context, String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(context).setTitle(title).setMessage(message).show();
         if (alertDialog.isShowing()) {
@@ -66,7 +74,7 @@ public class AppUtils {
     }
 
 
- /*   public static Dialog hideShowProgress(Context context) {
+    public static Dialog hideShowProgress(Context context) {
         Dialog dialog = new Dialog(context);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -76,7 +84,6 @@ public class AppUtils {
 
         return dialog;
     }
-*/
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setStatusBarGradient(Activity activity) {

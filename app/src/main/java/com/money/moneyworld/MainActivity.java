@@ -38,6 +38,8 @@ import com.google.android.play.core.tasks.Task;
 import com.money.moneyworld.Fragment.Contact_Us;
 import com.money.moneyworld.Fragment.Home;
 import com.money.moneyworld.Fragment.Wallet;
+import com.money.moneyworld.Model.ResponseModel.LoginResponse;
+import com.money.moneyworld.SharedPrefernce.SharedPrefManager;
 import com.money.moneyworld.utils.AppUtils;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ReviewManager reviewManager;
     ActionBarDrawerToggle  toggle;
 
+    LoginResponse.Logindetails loginResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mobile = (TextView) navHeader.findViewById(R.id.tv_head_nav_mobile);
         setpic = (ImageView) navHeader.findViewById(R.id.img_profile_pic);
         UploadPic = (ImageView) navHeader.findViewById(R.id.img_camera_picker);
+
+        loginResponse = SharedPrefManager.getInstance(MainActivity.this).getUser();
+
+        name.setText(loginResponse.getName());
+        email.setText(loginResponse.getEmail());
+        mobile.setText(loginResponse.getMobile());
 
         context = MainActivity.this;
 
@@ -192,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // SharedPrefManager.getInstance(getApplicationContext()).logout();
+                         SharedPrefManager.getInstance(getApplicationContext()).logout();
                         Toast.makeText(MainActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
 
                     }

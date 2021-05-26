@@ -17,4 +17,7 @@
     <color name="button_color">#008dcb</color>
     <color name="shadowBlack">#000</color>
     <color name="toolbar_color">#3a4572</color>
+    <color name="gray_opacity">#B5474242</color>
+    <color name="colorPrimaryDark">#0F161F</color>
+
 </resources>
