@@ -1,11 +1,14 @@
 package com.money.moneyworld.api;
 
 
+import com.money.moneyworld.Model.ResponseModel.CreateOderIdResponse;
 import com.money.moneyworld.Model.ResponseModel.ForgetResponse;
 import com.money.moneyworld.Model.ResponseModel.LoginResponse;
 import com.money.moneyworld.Model.ResponseModel.SignUpResponse;
+import com.money.moneyworld.Model.request.CreateOrderIdBody;
 import com.money.moneyworld.Model.request.Login;
 import com.money.moneyworld.Model.request.OTP_VerifyModel;
+import com.money.moneyworld.Model.request.SaveBody;
 import com.money.moneyworld.Model.request.User;
 
 import okhttp3.ResponseBody;
@@ -47,4 +50,16 @@ public interface ApiService {
     );
 
 
+    @FormUrlEncoded
+    @POST("restapi/logout")
+    Call<ResponseBody> LogOut(
+            @Field("user_id") String mobile,
+            @Field("live") String otp
+    );
+
+    @POST("restapi/createorder")
+    Call<CreateOderIdResponse> CreateOderID(@Body CreateOrderIdBody orderIdBody );
+
+    @POST("restapi/walletrazorpayresponse")
+    Call<ResponseBody> SavePayment(@Body SaveBody saveBody );
 }

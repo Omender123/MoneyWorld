@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,9 +41,15 @@ import com.money.moneyworld.Fragment.Home;
 import com.money.moneyworld.Fragment.Wallet;
 import com.money.moneyworld.Model.ResponseModel.LoginResponse;
 import com.money.moneyworld.SharedPrefernce.SharedPrefManager;
+import com.money.moneyworld.authentication.Change_Password;
+import com.money.moneyworld.authentication.Successfully_Screen;
 import com.money.moneyworld.utils.AppUtils;
+import com.money.moneyworld.view_presenter.LogOutPresenter;
+import com.money.moneyworld.view_presenter.UpdatePasswordPresenter;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import de.mateware.snacky.Snacky;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LogOutPresenter.LogOutPresenterView {
     private DrawerLayout mDrawerLayout;
     private View navHeader;
     TextView name, email, mobile;
@@ -52,8 +59,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     ReviewManager reviewManager;
     ActionBarDrawerToggle  toggle;
-
     LoginResponse.Logindetails loginResponse;
+
+
+    private Dialog dialog;
+    private LogOutPresenter presenter;
+    private View view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,8 +113,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
+        presenter = new LogOutPresenter(this);
+        dialog = AppUtils.hideShowProgress(context);
 
-       }
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -201,9 +216,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                         SharedPrefManager.getInstance(getApplicationContext()).logout();
-                        Toast.makeText(MainActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
-
+                       presenter.LogOutUser(loginResponse.getUserId(),"0");
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -302,5 +315,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    @Override
+    public void showHideProgress(boolean isShow) {
+        if (isShow){
+            dialog.show();
+        }else {
+            dialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onError(String message) {
+
+        Snacky.builder()
+                .setActivity(MainActivity.this)
+                .setText(message)
+                .setTextColor(getResources().getColor(R.color.white))
+                .error()
+                .show();
+    }
+
+    @Override
+    public void onSuccess(String message) {
+
+        if (message.equalsIgnoreCase("ok")){
+            SharedPrefManager.getInstance(getApplicationContext()).logout();
+            Toast.makeText(MainActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+        Snacky.builder()
+                .setActivity(MainActivity.this)
+                .setText(t.getLocalizedMessage())
+                .setTextColor(getResources().getColor(R.color.white))
+                .error()
+                .show();
+
+    }
 }

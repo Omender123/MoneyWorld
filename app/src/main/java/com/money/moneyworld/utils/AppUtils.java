@@ -117,12 +117,14 @@ public class AppUtils {
 
 
 
-    public static void showMessageOKCancel(String message, Activity activity, DialogInterface.OnClickListener okListener) {
+    public static void showMessageOKCancel(String message, Activity activity, DialogInterface.OnClickListener okListener,Boolean aBoolean) {
         new android.app.AlertDialog.Builder(activity)
                 .setMessage(message)
+                .setCancelable(aBoolean)
                 .setPositiveButton("OKAY", okListener)
                 .create()
                 .show();
+
     }
 
 
