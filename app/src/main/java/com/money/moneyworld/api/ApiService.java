@@ -5,18 +5,23 @@ import com.money.moneyworld.Model.ResponseModel.CreateOderIdResponse;
 import com.money.moneyworld.Model.ResponseModel.ForgetResponse;
 import com.money.moneyworld.Model.ResponseModel.LoginResponse;
 import com.money.moneyworld.Model.ResponseModel.SignUpResponse;
+import com.money.moneyworld.Model.ResponseModel.UploadProfileResponse;
+import com.money.moneyworld.Model.ResponseModel.WalletBalanceResponse;
 import com.money.moneyworld.Model.request.CreateOrderIdBody;
 import com.money.moneyworld.Model.request.Login;
 import com.money.moneyworld.Model.request.OTP_VerifyModel;
 import com.money.moneyworld.Model.request.SaveBody;
 import com.money.moneyworld.Model.request.User;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface ApiService {
 
@@ -62,4 +67,19 @@ public interface ApiService {
 
     @POST("restapi/walletrazorpayresponse")
     Call<ResponseBody> SavePayment(@Body SaveBody saveBody );
+
+
+    @FormUrlEncoded
+    @POST("restapi/walletdetails")
+    Call<WalletBalanceResponse>WALLET_BALANCE(
+            @Field("user_id") String userId
+    );
+
+    @Multipart
+    @POST("restapi/profileupdate")
+    Call<UploadProfileResponse>Upload_image(
+            @Part("user_id") RequestBody userId,
+            @Part("profile") RequestBody image
+            );
+
 }

@@ -1,6 +1,7 @@
 package com.money.moneyworld;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
@@ -17,10 +18,15 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +35,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.play.core.review.ReviewInfo;
@@ -40,6 +48,9 @@ import com.money.moneyworld.Fragment.Contact_Us;
 import com.money.moneyworld.Fragment.Home;
 import com.money.moneyworld.Fragment.Wallet;
 import com.money.moneyworld.Model.ResponseModel.LoginResponse;
+import com.money.moneyworld.Model.ResponseModel.UploadProfileResponse;
+import com.money.moneyworld.SharedPerfence.MyPreferences;
+import com.money.moneyworld.SharedPerfence.PrefConf;
 import com.money.moneyworld.SharedPrefernce.SharedPrefManager;
 import com.money.moneyworld.authentication.Change_Password;
 import com.money.moneyworld.authentication.Successfully_Screen;
@@ -47,9 +58,17 @@ import com.money.moneyworld.utils.AppUtils;
 import com.money.moneyworld.view_presenter.LogOutPresenter;
 import com.money.moneyworld.view_presenter.UpdatePasswordPresenter;
 
-import de.mateware.snacky.Snacky;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LogOutPresenter.LogOutPresenterView {
+import de.mateware.snacky.Snacky;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LogOutPresenter.LogOutPresenterView, View.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private View navHeader;
     TextView name, email, mobile;
@@ -60,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ReviewManager reviewManager;
     ActionBarDrawerToggle  toggle;
     LoginResponse.Logindetails loginResponse;
+    public  boolean permissionStatus;
+    private int PICK_PHOTO_FOR_AVATAR = 1;
 
 
     private Dialog dialog;
@@ -117,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dialog = AppUtils.hideShowProgress(context);
 
 
+        UploadPic.setOnClickListener(this);
     }
 
     @Override
@@ -129,8 +151,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if (fragmentsInStack > 1) { // If we have more than one fragment, pop back stack
             getSupportFragmentManager().popBackStack();
             toolbar.setTitle("Home");
-            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-            navigationView.setCheckedItem(R.id.nav_home);
+           toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+           navigationView.setCheckedItem(R.id.nav_home);
                  } else if (fragmentsInStack == 1) { // Finish activity, if only one fragment left, to prevent leaving empty screen
             finish();
         } else {
@@ -346,6 +368,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void onProfileUploadSuccess(UploadProfileResponse uploadProfileResponse, String message) {
+        if (message.equalsIgnoreCase("ok")){
+            MyPreferences.getInstance(context).putString(PrefConf.PROFILEPIC,uploadProfileResponse.getProfile());
+
+            String image = uploadProfileResponse.getProfile();
+
+             Glide.with(context).load(image).apply(new RequestOptions().circleCrop()).placeholder(R.drawable.ic_profile_pic).into(setpic);
+
+            Toast.makeText(context, ""+image, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public void onFailure(Throwable t) {
         Snacky.builder()
                 .setActivity(MainActivity.this)
@@ -354,5 +389,116 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .error()
                 .show();
 
+
+
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_camera_picker:
+                galleryPicker();
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+
+            case AppUtils.PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    permissionStatus = true;
+
+                } else {
+                    permissionStatus = false;
+                    String msg = "Please Allow Permission to Set Profile Image.";
+                    customAlert(msg);
+
+                }
+                return;
+        }
+    }
+
+    private void customAlert(String msg) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+        alertDialog.setMessage(msg);
+        alertDialog.setCancelable(false);
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        }).show();
+    }
+
+    private void galleryPicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_PHOTO_FOR_AVATAR);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+       /* if (requestCode == PICK_PHOTO_FOR_AVATAR && resultCode == RESULT_OK) {
+            if (data == null)
+                return;
+            Uri uri = data.getData();
+            System.out.println("urii  "+uri +" "+uri.getPath());
+            String path  = ImagePath.getPath(context,uri);
+            System.out.println("urii path "+path );
+            if(path!=null && !path.equals("")) {
+                File file = new File(path);
+                //uploadImage(file);
+            }
+
+        }*/
+
+        if (data != null && requestCode == PICK_PHOTO_FOR_AVATAR) {
+
+
+            if (resultCode == RESULT_OK) {
+                Uri targetUri = data.getData();
+                Bitmap bitmap;
+                try {
+                    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
+                   String image = ConvertBitmapToString(resizedBitmap);
+                     Upload(image,loginResponse.getUserId());
+
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void Upload(String image, String userId) {
+        RequestBody image1 =
+                RequestBody.create(
+                        MediaType.parse("multipart/form-data"), image);
+        RequestBody userid1 =
+                RequestBody.create(
+                        MediaType.parse("multipart/form-data"), userId);
+        presenter.UploadProfile(userid1,image1);
+    }
+
+    public static String ConvertBitmapToString(Bitmap bitmap){
+        String encodedImage = "";
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+        try {
+            encodedImage= URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return encodedImage;
+    }
+
+
 }
