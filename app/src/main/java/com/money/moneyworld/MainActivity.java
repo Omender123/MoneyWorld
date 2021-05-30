@@ -55,6 +55,7 @@ import com.money.moneyworld.SharedPrefernce.SharedPrefManager;
 import com.money.moneyworld.authentication.Change_Password;
 import com.money.moneyworld.authentication.Successfully_Screen;
 import com.money.moneyworld.utils.AppUtils;
+import com.money.moneyworld.utils.ImagePath;
 import com.money.moneyworld.view_presenter.LogOutPresenter;
 import com.money.moneyworld.view_presenter.UpdatePasswordPresenter;
 
@@ -66,6 +67,7 @@ import java.net.URLEncoder;
 
 import de.mateware.snacky.Snacky;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LogOutPresenter.LogOutPresenterView, View.OnClickListener {
@@ -81,8 +83,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     LoginResponse.Logindetails loginResponse;
     public  boolean permissionStatus;
     private int PICK_PHOTO_FOR_AVATAR = 1;
-
-
     private Dialog dialog;
     private LogOutPresenter presenter;
     private View view;
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
-
+        AppUtils.checkAndRequestPermissions(this);
         navHeader = navigationView.getHeaderView(0);
         name = (TextView) navHeader.findViewById(R.id.tv_head_nav_user_name);
         email = (TextView) navHeader.findViewById(R.id.tv_head_nav_email);
@@ -113,8 +113,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         email.setText(loginResponse.getEmail());
         mobile.setText(loginResponse.getMobile());
 
-        context = MainActivity.this;
 
+
+        context = MainActivity.this;
+        String profileImage = MyPreferences.getInstance(context).getString(PrefConf.PROFILEPIC, null);
+        if (profileImage==null){
+            Glide.with(context).load(profileImage).apply(new RequestOptions().circleCrop()).placeholder(R.drawable.ic_profile_pic).into(setpic);
+
+        }else{
+            Glide.with(context).load(profileImage).apply(new RequestOptions().circleCrop()).placeholder(R.drawable.ic_profile_pic).into(setpic);
+
+        }
          toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar,
                 R.string.navigation_drawer_open,
@@ -139,6 +148,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         UploadPic.setOnClickListener(this);
+
+
+
     }
 
     @Override
@@ -441,7 +453,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-       /* if (requestCode == PICK_PHOTO_FOR_AVATAR && resultCode == RESULT_OK) {
+        if (requestCode == PICK_PHOTO_FOR_AVATAR && resultCode == RESULT_OK) {
             if (data == null)
                 return;
             Uri uri = data.getData();
@@ -450,12 +462,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             System.out.println("urii path "+path );
             if(path!=null && !path.equals("")) {
                 File file = new File(path);
+                Upload( file,loginResponse.getUserId());
                 //uploadImage(file);
             }
 
-        }*/
+        }
 
-        if (data != null && requestCode == PICK_PHOTO_FOR_AVATAR) {
+      /*  if (data != null && requestCode == PICK_PHOTO_FOR_AVATAR) {
 
 
             if (resultCode == RESULT_OK) {
@@ -472,17 +485,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     e.printStackTrace();
                 }
             }
-        }
+        }*/
     }
 
-    private void Upload(String image, String userId) {
-        RequestBody image1 =
-                RequestBody.create(
-                        MediaType.parse("multipart/form-data"), image);
+    private void Upload(File file, String userId) {
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part image =
+                MultipartBody.Part.createFormData("profile", file.getName(), requestFile);
         RequestBody userid1 =
                 RequestBody.create(
                         MediaType.parse("multipart/form-data"), userId);
-        presenter.UploadProfile(userid1,image1);
+       presenter.UploadProfile(userid1,image);
     }
 
     public static String ConvertBitmapToString(Bitmap bitmap){

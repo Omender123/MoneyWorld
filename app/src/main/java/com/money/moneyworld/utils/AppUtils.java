@@ -267,7 +267,7 @@ public static String getDateTime(String timeStamp){
 
     }
 */
-    /*public static void exitDialog(final AppCompatActivity context) {
+   /* public static void exitDialog(final AppCompatActivity context) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater =context.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.custom_exit_dialog, null);
@@ -303,8 +303,7 @@ public static String getDateTime(String timeStamp){
         alertDialog.show();
 
 
-    }
-*/
+    }*/
 
 
     public static void shareApp(Context context) {
@@ -322,15 +321,41 @@ public static String getDateTime(String timeStamp){
         }
     }
 
-   /* public static void galleryPicker(AppCompatActivity activity) {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        activity.startActivityForResult(intent, Constants.PICK_PHOTO_FOR_AVATAR);
+    public static boolean checkAndRequestPermissions(Activity context) {
+        if (context != null) {
+
+            int storagePermission = ContextCompat.checkSelfPermission(context,
+                    Manifest.permission.READ_EXTERNAL_STORAGE);
+            int storageWritePermission = ContextCompat.checkSelfPermission(context,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            List<String> listPermissionsNeeded = new ArrayList<>();
+
+
+            if (storagePermission != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+
+            if (storageWritePermission != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if (!listPermissionsNeeded.isEmpty()) {
+                ActivityCompat.requestPermissions(context,
+                        listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), PERMISSION_REQUEST_CODE);
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return true;
     }
-*/
 
 
 
-    }
+
+
+}
 
 

@@ -13,6 +13,7 @@ import com.money.moneyworld.Model.request.OTP_VerifyModel;
 import com.money.moneyworld.Model.request.SaveBody;
 import com.money.moneyworld.Model.request.User;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -79,7 +80,7 @@ public interface ApiService {
     @POST("restapi/profileupdate")
     Call<UploadProfileResponse>Upload_image(
             @Part("user_id") RequestBody userId,
-            @Part("profile") RequestBody image
+            @Part MultipartBody.Part image
             );
 
 }

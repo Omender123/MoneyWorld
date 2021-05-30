@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -53,7 +54,7 @@ public class LogOutPresenter {
             }
         });
     }
-    public void UploadProfile(RequestBody userId, RequestBody image){
+    public void UploadProfile(RequestBody userId, MultipartBody.Part image){
         view.showHideProgress(true);
         Call<UploadProfileResponse> userCall = AppUtils.getApi((Context)view).Upload_image(userId,image);
         userCall.enqueue(new Callback<UploadProfileResponse>() {
