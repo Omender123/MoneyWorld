@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.Activity.WithDraw_Money"
+    android:background="@color/status_color">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbar_color"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="30dp">
+
+            <EditText
+
+                android:id="@+id/bank_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/verifying_textview"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/bank24"
+                android:hint="Bank Name"
+                android:textColorHint="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:textColor="@color/white" />
+
+            <EditText
+
+                android:id="@+id/acc_no"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:drawablePadding="10dp"
+                android:textColorHint="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:background="@drawable/verifying_textview"
+                android:drawableStart="@drawable/number_24"
+                android:hint="Account Number"
+                android:inputType="number"
+                android:paddingStart="10dp"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/holder_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/verifying_textview"
+                android:drawableStart="@drawable/ic_user_name"
+                android:drawablePadding="10dp"
+                android:hint="Bank Holder Name"
+                android:textColorHint="@color/white"
+                android:fontFamily="@font/montserrat"
+
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:textColor="@color/white" />
+
+
+
+            <EditText
+                android:id="@+id/upi_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/verifying_textview"
+                android:drawableStart="@drawable/ic_upi"
+                android:fontFamily="@font/montserrat"
+                android:textColorHint="@color/white"
+                android:drawablePadding="10dp"
+                android:hint="UPI ID"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/enter_amount"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/verifying_textview"
+                android:drawableStart="@drawable/ic_coin_stack"
+                android:drawablePadding="10dp"
+                android:hint="Enter Amount"
+                android:textColorHint="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:inputType="numberDecimal"
+                android:paddingStart="10dp"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/verifying_textview"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="20dp"
+                android:text="Submit"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+</layout>

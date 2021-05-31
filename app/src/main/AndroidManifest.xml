@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,8 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWorld"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UI.Activity.Add_Money"
-            android:theme="@style/Theme.MoneyWorld.NoActionBar"></activity>
+        <activity android:name=".UI.Activity.WithDraw_Money"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" ></activity>
+        <activity
+            android:name=".UI.Activity.Update_Profile"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
+        <activity
+            android:name=".UI.Activity.Add_Money"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
         <activity
             android:name=".UI.Activity.PlayingGame2"
             android:theme="@style/Theme.MoneyWorld.NoActionBar" />
@@ -59,9 +64,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="@string/rozerpay_api_key"
-            />
-
+            android:value="@string/rozerpay_api_key" />
     </application>
 
 </manifest>

@@ -52,6 +52,7 @@ import com.money.moneyworld.Model.ResponseModel.UploadProfileResponse;
 import com.money.moneyworld.SharedPerfence.MyPreferences;
 import com.money.moneyworld.SharedPerfence.PrefConf;
 import com.money.moneyworld.SharedPrefernce.SharedPrefManager;
+import com.money.moneyworld.UI.Activity.Update_Profile;
 import com.money.moneyworld.authentication.Change_Password;
 import com.money.moneyworld.authentication.Successfully_Screen;
 import com.money.moneyworld.utils.AppUtils;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private View navHeader;
     TextView name, email, mobile;
     Toolbar toolbar;
-    ImageView setpic, UploadPic;
+    ImageView setpic, UploadPic,edit_profile;
     Context context;
     NavigationView navigationView;
     ReviewManager reviewManager;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mobile = (TextView) navHeader.findViewById(R.id.tv_head_nav_mobile);
         setpic = (ImageView) navHeader.findViewById(R.id.img_profile_pic);
         UploadPic = (ImageView) navHeader.findViewById(R.id.img_camera_picker);
-
+        edit_profile  = (ImageView) navHeader.findViewById(R.id.edit_profile);
         loginResponse = SharedPrefManager.getInstance(MainActivity.this).getUser();
 
         name.setText(loginResponse.getName());
@@ -150,6 +151,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         UploadPic.setOnClickListener(this);
 
 
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Update_Profile.class));
+            }
+        });
 
     }
 

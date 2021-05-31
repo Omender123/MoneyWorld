@@ -106,11 +106,24 @@
 
             </LinearLayout>
             <View
+                android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
                 android:background="#1A2C5A"
                 android:layout_marginBottom="2dp"/>
+
+            <ImageView
+                android:id="@+id/edit_profile"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_edit"
+                app:tint="@color/white"
+                android:layout_above="@id/view"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentEnd="true" />
+
         </RelativeLayout>
 
 

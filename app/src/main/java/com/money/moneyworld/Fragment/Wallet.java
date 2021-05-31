@@ -19,6 +19,7 @@ import com.money.moneyworld.Model.ResponseModel.WalletBalanceResponse;
 import com.money.moneyworld.R;
 import com.money.moneyworld.SharedPrefernce.SharedPrefManager;
 import com.money.moneyworld.UI.Activity.Add_Money;
+import com.money.moneyworld.UI.Activity.WithDraw_Money;
 import com.money.moneyworld.databinding.FragmentContactUsBinding;
 import com.money.moneyworld.databinding.FragmentWalletBinding;
 import com.money.moneyworld.utils.AppUtils;
@@ -64,7 +65,7 @@ public class Wallet extends Fragment implements SingleSelectToggleGroup.OnChecke
                    break;
 
                case R.id.withdraw:
-                   Toast.makeText(getContext(), "WithDraw Money", Toast.LENGTH_SHORT).show();
+                   startActivity(new Intent(getContext(), WithDraw_Money.class));
 
                    break;
            }

@@ -62,6 +62,8 @@
                 android:id="@+id/submitexpenses"
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
+                android:background="@color/button_color"
+                android:backgroundTint="@color/button_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="pay"
