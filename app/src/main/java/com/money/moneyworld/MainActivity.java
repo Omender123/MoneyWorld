@@ -46,6 +46,7 @@ import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 import com.money.moneyworld.Fragment.Contact_Us;
 import com.money.moneyworld.Fragment.Home;
+import com.money.moneyworld.Fragment.TransactionHistory;
 import com.money.moneyworld.Fragment.Wallet;
 import com.money.moneyworld.Model.ResponseModel.LoginResponse;
 import com.money.moneyworld.Model.ResponseModel.UploadProfileResponse;
@@ -207,12 +208,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 break;
 
-            case R.id.nav_Result:
+                case R.id.nav_Result:
                 toolbar.setTitle("Result");
                 toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-
                 Toast.makeText(this, "Welcome to Result", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.nav_TransactionHistory:
+                toolbar.setTitle("Transaction History");
+                toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+                Fragment fragment3 = new TransactionHistory();
+                replaceFragment(fragment3,"Transaction History");
+
+
+                break;
+
 
 
             case R.id.nav_contact:

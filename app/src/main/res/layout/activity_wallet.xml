@@ -9,7 +9,7 @@ xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/status_color"
-    tools:context=".UI.Activity.Wallet">
+    tools:context=".Fragment.Wallet">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

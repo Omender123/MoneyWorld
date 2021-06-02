@@ -13,6 +13,10 @@
             android:id="@+id/nav_Result"
             android:icon="@drawable/ic_result"
             android:title="Result"/>
+        <item
+            android:id="@+id/nav_TransactionHistory"
+            android:icon="@drawable/ic_baseline_history_edu_24"
+            android:title="Transaction History"/>
     </group>
     <item
         android:id="@+id/nav_com"
