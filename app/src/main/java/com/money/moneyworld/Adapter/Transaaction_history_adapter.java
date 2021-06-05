@@ -2,6 +2,7 @@ package com.money.moneyworld.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.money.moneyworld.R;
+import com.money.moneyworld.UI.Activity.Full_Transaction_History;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,13 +90,12 @@ public class Transaaction_history_adapter extends RecyclerView.Adapter<Transaact
             transaction_time = itemView.findViewById(R.id.transaction_Time);
 
 
-          /*  itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    historyClickLister.onHistoryItemClickListener(getAdapterPosition());
+                    context.startActivity(new Intent(context, Full_Transaction_History.class));
                 }
             });
-*/
         }
     }
 

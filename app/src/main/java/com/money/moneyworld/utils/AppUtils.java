@@ -100,7 +100,7 @@ public class AppUtils {
     public  static  void setUpToolbar(AppCompatActivity activity, Toolbar toolbar, boolean isTitleEnable, boolean isBackEnable, String title){
            activity.setSupportActionBar(toolbar);
 
-            Objects.requireNonNull(activity.getSupportActionBar()).setDisplayShowTitleEnabled(isTitleEnable);
+           Objects.requireNonNull(activity.getSupportActionBar()).setDisplayShowTitleEnabled(isTitleEnable);
             activity.getSupportActionBar().setTitle(title);
 
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(isBackEnable);

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/status_color"
+        android:orientation="vertical"
+        tools:context=".UI.Activity.Full_Transaction_History">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/toolbar_color"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textSize="@dimen/margin_16"
+                    android:text="Transaction Successful"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/text_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="01dp"
+                    android:textSize="@dimen/margin_16"
+                    android:text="Fri,4 Jun 2021 13:26:46 PM"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="15dp"
+                    android:src="@mipmap/transactiom_img"/>
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="05dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="@color/status_color">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingBottom="15dp">
+
+                        <TextView
+                            android:id="@+id/text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toEndOf="@+id/view"
+                            android:text="Transaction Id"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+
+
+                        <TextView
+                            android:id="@+id/trans_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/text"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:text="POI736492673HFHSKL"
+                            android:layout_alignParentEnd="true"
+                            android:layout_toEndOf="@+id/view"
+                            android:fontFamily="@font/montserrat"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="5dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/button_color" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card2"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="05dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="@color/status_color">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingBottom="15dp">
+
+                        <TextView
+                            android:id="@+id/paidto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toEndOf="@+id/view1"
+                            android:text="Payment Type"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+
+
+                        <TextView
+                            android:id="@+id/receiver_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/paidto"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginLeft="20dp"
+                            android:text="Wallet Pay"
+                            android:layout_marginRight="15dp"
+                            android:layout_toEndOf="@+id/view1"
+                            android:fontFamily="@font/montserrat"
+                            android:justificationMode="inter_word"
+                            android:textColor="@color/white"
+                            android:textSize="17dp" />
+
+                        <View
+                            android:id="@+id/view1"
+                            android:layout_width="5dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/button_color" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_rewards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    app:cardCornerRadius="05dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="@color/status_color"
+                    app:cardElevation="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingBottom="15dp">
+
+                        <TextView
+                            android:id="@+id/text6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Paid Amount"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="10dp" />
+
+
+                        <TextView
+                            android:id="@+id/text_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/text6"
+                            android:layout_marginStart="25dp"
+                            android:fontFamily="@font/montserrat"
+                            android:text="₹ 100 Rs."
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <View
+
+                            android:layout_width="5dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/button_color" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card3"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="05dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="@color/status_color">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingBottom="15dp">
+                        <TextView
+                            android:id="@+id/transstatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_toEndOf="@+id/view3"
+                            android:text="Status"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/transstatus"
+                            android:layout_toEndOf="@+id/view3"
+                            android:layout_marginLeft="20dp"
+                            android:fontFamily="@font/montserrat"
+                            android:justificationMode="inter_word"
+                            android:text="Done"
+                            android:textColor="@color/white"
+                            android:textSize="17dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_check_circle_24"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_alignParentRight="true"/>
+
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="5dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/button_color" />
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+               
+                <Button
+                    android:id="@+id/show_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/border"
+                    android:text="Back"
+                    android:layout_marginBottom="40dp"
+                    android:textAllCaps="false"
+                    />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

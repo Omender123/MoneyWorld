@@ -17,8 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWorld"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UI.Activity.WithDraw_Money"
-            android:theme="@style/Theme.MoneyWorld.NoActionBar" ></activity>
+        <activity android:name=".UI.Activity.Full_Transaction_History"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar"></activity>
+        <activity
+            android:name=".UI.Activity.WithDraw_Money"
+            android:theme="@style/Theme.MoneyWorld.NoActionBar" />
         <activity
             android:name=".UI.Activity.Update_Profile"
             android:theme="@style/Theme.MoneyWorld.NoActionBar" />
