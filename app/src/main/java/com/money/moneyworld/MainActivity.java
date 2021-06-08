@@ -46,6 +46,7 @@ import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 import com.money.moneyworld.Fragment.Contact_Us;
 import com.money.moneyworld.Fragment.Home;
+import com.money.moneyworld.Fragment.Result;
 import com.money.moneyworld.Fragment.TransactionHistory;
 import com.money.moneyworld.Fragment.Wallet;
 import com.money.moneyworld.Model.ResponseModel.LoginResponse;
@@ -196,8 +197,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 replaceFragment(fragment,"Home");
                 toolbar.setTitle("Home");
                 toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-                Toast.makeText(this, "Welcome to home fragment", Toast.LENGTH_SHORT).show();
-                break;
+                 break;
 
             case R.id.nav_wallet:
                 toolbar.setTitle("Wallet");
@@ -207,11 +207,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                 break;
-
                 case R.id.nav_Result:
                 toolbar.setTitle("Result");
                 toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-                Toast.makeText(this, "Welcome to Result", Toast.LENGTH_SHORT).show();
+                    Fragment fragment4 = new Result();
+                    replaceFragment(fragment4,"Result");
                 break;
 
             case R.id.nav_TransactionHistory:
@@ -232,7 +232,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle("Contact Us");
                 toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
-              //  Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
                 break;
 
 
